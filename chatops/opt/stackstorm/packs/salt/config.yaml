@@ -1,5 +1,0 @@
-api_url: http://saltmaster:8000/
-username: stackstorm
-password: stackstorm
-eauth: pam
-verify_ssl: false
