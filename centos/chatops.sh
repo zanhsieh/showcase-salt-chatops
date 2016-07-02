@@ -29,6 +29,8 @@ sed -i "s/.*export HUBOT_SLACK_TOKEN.*/export HUBOT_SLACK_TOKEN=${HUBOT_SLACK_TO
 st2ctl restart st2chatops
 
 # Wait 30 seconds for Hubot to start
+# Note that /var/log/st2/st2chatops.log does not exist in CentOS 7. See:
+# https://github.com/StackStorm/st2-packages/issues/300
 for i in {1..30}; do
     ACTIONEXIT=`$(nmap -Pn -p8081 127.0.0.1 | awk "\\$1 ~ /8081/ {print \\$2}" | grep open); echo $?`
     #ACTIONEXIT=`grep -q 'Slack client now connected' /var/log/st2/st2chatops.log 2> /dev/null; echo $?`
