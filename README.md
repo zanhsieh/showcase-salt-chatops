@@ -16,8 +16,8 @@ As a result you should get 100% ready environment allowing you to execute [Salt 
 * Create [slack.com](http://slack.com/) account if you don't have it yet.
 * Navigate `Configure Integrations -> Filter -> Hubot` and generate Slack & Hubot API Token.
 
-#### 2. Vagrant up
-Edit [`Vagrantfile`](Vagrantfile#L5) and add the just generated API token under `HUBOT_SLACK_TOKEN` constant, or just export it:
+#### 2. Go to your favorite OS family and call vagrant up
+Go to your favorite OS family, edit [`Vagrantfile`](Vagrantfile#L5) and add the just generated API token under `HUBOT_SLACK_TOKEN` constant, or just export it:
 ```sh
 export HUBOT_SLACK_TOKEN=xoxb-1234-5678-91011-00e4dd
 ```
