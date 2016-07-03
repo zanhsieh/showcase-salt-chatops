@@ -1,0 +1,13 @@
+---
+name: "salt.salt_package_version"
+action_ref: "salt.package_version"
+description: "Show package version on minion(s)"
+formats:
+  - display: "show version <args> on <target>"
+    representation:
+      - "show version {{args}} on {{target='*'}}"
+      - "show {{args}} version on {{target='*'}}"
+ack:
+  format: "Running salt local across minions"
+result:
+  format: "Salt said{~} {{ execution.result.result.return }}"
