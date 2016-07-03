@@ -1,0 +1,10 @@
+---
+name: "salt.salt_package_install"
+action_ref: "salt.install_package"
+description: "Install package on minion(s)"
+formats:
+  - "install {{args}} on {{target='*'}}"
+ack:
+  format: "Running salt local across minions"
+result:
+  format: "Salt said{~} {{ execution.result.result.return }}"

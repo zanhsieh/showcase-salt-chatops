@@ -1,0 +1,25 @@
+---
+description: Run Salt Execution modules through Salt API
+enabled: true
+entry_point: local.py
+name: local_systemd.start
+parameters:
+  module:
+    default: systemd.start
+    immutable: true
+    type: string
+  target:
+     required: false
+     type: string
+     default: '*'
+  expr_form:
+    required: false
+    type: string
+    default: glob
+  args:
+    required: false
+    type: array
+  kwargs:
+    required: false
+    type: object
+runner_type: run-python
