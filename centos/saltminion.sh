@@ -4,10 +4,10 @@ echo "##########################################################################
 echo "############################# Prepare StackStorm and Salt ###################################"
 
 # use the latest stable Salt from repo.saltstack.com
-yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm
+yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm
 
 yum clean expire-cache
-yum  -y update
+yum -y update
 
 yum -y install rsync salt-minion
 
