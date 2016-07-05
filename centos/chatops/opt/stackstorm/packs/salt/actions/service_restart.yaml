@@ -1,0 +1,27 @@
+---
+name: 'service_restart'
+runner_type: 'mistral-v2'
+description: 'Restart service through Salt API'
+entry_point: 'workflows/service_restart.yaml'
+pack: salt
+enabled: true
+parameters:
+  target:
+    description: 'Pattern used to match minons'
+    type: 'string'
+    required: false
+    default: '*'
+  expr_form:
+    description: 'Criteria used for matching minions'
+    type: 'string'
+    required: false
+    default: 'glob'
+  args:
+    description: 'Positional arguments to pass to the module'
+    type: 'string'
+    required: true
+    default: ''
+  kwargs:
+    description: 'Key Pair arguments to pass to the module'
+    type: object
+    required: false

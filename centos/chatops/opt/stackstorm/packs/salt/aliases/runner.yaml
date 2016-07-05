@@ -3,8 +3,8 @@ name: "salt.runner"
 action_ref: "salt.runner"
 description: "Execute salt module."
 formats:
-    - "salt {{module}}"
+  - "salt {{module}}"
 ack:
-    format: "Running salt runner across minions"
+  format: "Running salt runner across minions"
 result:
   format: "Salt said{~} {{ execution.result.result.return }}"

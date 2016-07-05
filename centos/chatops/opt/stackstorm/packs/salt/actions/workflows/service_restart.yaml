@@ -1,0 +1,55 @@
+version: '2.0'
+
+salt.service_restart:
+  description: 'Service restart vanilla'
+  type: direct
+  input:
+    - target
+    - expr_form
+    - args
+    - kwargs
+  tasks:
+    detect_os_family:
+      action: salt.local_grains.get
+      input:
+        target: <% $.target %>
+        args: 'osfinger'
+      publish:
+        osfinger: "<% task(detect_os_family) %>"
+      on-success:
+        - systemv_restart: <% 'CentOS' in $.osfinger %>
+        - supervisord_restart: <% 'Ubuntu' in $.osfinger %>
+        #- systemd_restart: <% 'CentOS' in $.osfinger and '7' in $.osfinger %>
+      on-error: append_stats
+
+    append_stats:
+      action: core.local
+      input:
+        cmd: /bin/echo "<% task(detect_os_family) %>"
+
+    systemv_restart:
+      action: salt.local_service.restart
+      input:
+        module: service.restart
+        target: <% $.target %>
+        expr_form: <% $.expr_form %>
+        args: <% $.args %>
+        kwargs: <% $.kwargs %>
+
+    supervisord_restart:
+      action: salt.local_supervisord.restart
+      input:
+        module: supervisord.restart
+        target: <% $.target %>
+        expr_form: <% $.expr_form %>
+        args: <% $.args %>
+        kwargs: <% $.kwargs %>
+
+    #systemd_restart:
+    #  action: salt.local_systemd.restart
+    #  input:
+    #    module: systemd.restart
+    #    target: <% $.target %>
+    #    expr_form: <% $.expr_form %>
+    #    args: <% $.args %>
+    #    kwargs: <% $.kwargs %>
